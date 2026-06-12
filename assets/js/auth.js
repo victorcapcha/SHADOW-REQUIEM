@@ -25,23 +25,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnHamburguesa = document.getElementById("btn-hamburguesa");
     const menuEnlaces = document.getElementById("menu-enlaces");
 
-    // 1. CONTROL DE SEGURIDAD EN TIEMPO REAL
+    // 1. ESCUDO DE SEGURIDAD ABSOLUTO EN TIEMPO REAL
     onAuthStateChanged(auth, (user) => {
-        const paginaActual = window.location.pathname.split("/").pop();
+        // Detecta el nombre de la página de forma inteligente sin importar el servidor
+        const rutaCompleta = window.location.pathname;
+        const esPaginaLogin = rutaCompleta.includes("login.html");
 
         if (user) {
-            // Si el usuario está logueado e intenta entrar a login.html, mándalo al inicio
-            if (paginaActual === "login.html" || paginaActual === "") {
+            // Si el usuario ya inició sesión e intenta ir al login, lo mandamos al Inicio
+            if (esPaginaLogin) {
                 window.location.href = "index.html";
             }
 
-            // AGREGAR BOTÓN DE LOGOUT AUTOMÁTICAMENTE EN EL MENÚ SI EXISTE
+            // INYECTAR BOTÓN DE SALIR (LOGOUT)
             if (menuEnlaces && !document.getElementById("btn-logout")) {
                 const logoutLink = document.createElement("a");
                 logoutLink.href = "#";
                 logoutLink.id = "btn-logout";
                 logoutLink.textContent = "Salir";
-                logoutLink.style.color = "#ef4444"; // Color rojo para el botón salir
+                logoutLink.style.color = "#ef4444"; 
+                logoutLink.style.fontWeight = "bold";
                 logoutLink.addEventListener("click", (e) => {
                     e.preventDefault();
                     signOut(auth);
@@ -49,19 +52,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 menuEnlaces.appendChild(logoutLink);
             }
 
-            // GESTIÓN DEL ROL DE ADMINISTRADOR (Para el panel de EPGP)
+            // COMPROBACIÓN DE ROL DE ADMINISTRADOR
             const panelAdmin = document.getElementById("panel-administrador");
             if (panelAdmin) {
-                if (user.email === CORREO_ADMIN) {
-                    panelAdmin.style.display = "block"; // Eres el admin: el panel se muestra solo para ti
+                // Compara en minúsculas para evitar errores de tipeo
+                if (user.email.toLowerCase() === CORREO_ADMIN.toLowerCase()) {
+                    panelAdmin.style.style.setProperty("display", "block", "important"); // Fuerza la vista al admin
                 } else {
-                    panelAdmin.style.display = "none";  // Eres un raider normal: el panel se destruye
+                    panelAdmin.remove(); // Si es un raider común, destruye el panel por completo para que no exista en su pantalla
                 }
             }
 
         } else {
-            // Si el usuario NO está logueado y no está en login.html, expulsarlo inmediatamente
-            if (paginaActual !== "login.html") {
+            // SI NO ESTÁ LOGUEADO: Lo expulsamos inmediatamente a menos que ya esté en el login
+            if (!esPaginaLogin) {
                 window.location.href = "login.html";
             }
         }
