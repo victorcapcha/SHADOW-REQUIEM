@@ -8,43 +8,53 @@ body {
     box-sizing: border-box;
 }
 
-/* BARRA DE NAVEGACIÓN RECONFIGURADA */
+/* BARRA DE NAVEGACIÓN CON HAMBURGUESA */
 nav {
     background-color: #111827;
     border-bottom: 1px solid rgba(147, 51, 234, 0.4);
-    padding: 1rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Permite que baje en pantallas chicas */
-    gap: 1rem;
+    position: relative;
 }
 .nav-logo-link {
     text-decoration: none;
-    display: inline-block;
 }
 .nav-logo-link h1 {
     margin: 0;
     color: #a855f7 !important;
     letter-spacing: 0.05em;
     font-size: 1.5rem;
-    transition: color 0.3s ease;
 }
-.nav-logo-link:hover h1 {
-    color: #c084fc !important;
-}
-nav div {
+.nav-links {
     display: flex;
     gap: 1.5rem;
 }
-nav div a {
+.nav-links a {
     color: #9ca3af;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
-nav div a:hover, nav div a.active {
+.nav-links a:hover, .nav-links a.active {
     color: #a855f7 !important;
+}
+
+/* BOTÓN HAMBURGUESA (Oculto por defecto en computadoras) */
+.menu-hamburguesa {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+}
+.menu-hamburguesa svg {
+    width: 100%;
+    height: 100%;
+    fill: #a855f7; /* Color morado para el icono */
 }
 
 /* PORTADA */
@@ -231,22 +241,34 @@ section h3 {
 
 /* --- 🛠️ DETECTOR DE DISPOSITIVOS MÓVILES (PANTALLAS CHICAS) --- */
 @media (max-width: 640px) {
-    nav {
-        flex-direction: column; /* Alinea el logo arriba y los botones abajo */
-        text-align: center;
-        padding: 1.25rem 1rem;
+    /* Mostrar el botón hamburguesa */
+    .menu-hamburguesa {
+        display: block;
     }
-    nav div {
+
+    /* Convertir el menú de enlaces en un panel desplegable vertical */
+    .nav-links {
+        display: none; /* Oculto por defecto */
+        flex-direction: column;
         width: 100%;
-        justify-content: center; /* Centra las pestañas del menú */
-        gap: 1rem;
+        position: absolute;
+        top: 100%; /* Aparece justo abajo de la barra de navegación */
+        left: 0;
+        background-color: #111827;
+        border-bottom: 1px solid rgba(147, 51, 234, 0.4);
+        padding: 1rem 2rem;
+        box-sizing: border-box;
+        gap: 1.25rem;
+        z-index: 99;
     }
-    nav div a {
-        font-size: 0.95rem;
+
+    /* Clase especial que agregaremos con JS para mostrar el menú */
+    .nav-links.mostrar {
+        display: flex;
     }
     
     section {
-        padding: 2rem 1rem; /* Margen más cómodo para celulares */
+        padding: 2rem 1rem;
     }
 
     /* BARRA INFERIOR FIJA PARA REDES SOCIALES */
@@ -257,7 +279,7 @@ section h3 {
         right: 0;
         top: auto;
         transform: none;
-        flex-direction: row; /* Iconos uno al lado del otro */
+        flex-direction: row;
         justify-content: center;
         background-color: #111827;
         padding: 10px;
@@ -270,8 +292,6 @@ section h3 {
         width: 42px;
         height: 42px;
     }
-    
-    /* Agrega margen al final del body para que las redes flotantes no tapen el contenido */
     body {
         padding-bottom: 60px; 
     }

@@ -9,14 +9,22 @@
 </head>
 <body>
 
-    <!-- MENÚ SUPERIOR -->
-        <!-- BARRA DE NAVEGACIÓN -->
+   <!-- BARRA DE NAVEGACIÓN CON MENÚ HAMBURGUESA -->
     <nav>
-        <!-- Este enlace envuelve al título para redirigir siempre al inicio -->
         <a href="index.html" class="nav-logo-link">
             <h1>SHADOW REQUIEM</h1>
         </a>
-        <div>
+        
+        <!-- BOTÓN HAMBURGUESA (Solo se verá en celulares) -->
+        <button class="menu-hamburguesa" id="btn-hamburguesa" aria-label="Abrir menú">
+            <svg viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </button>
+
+        <!-- ENLACES DEL MENÚ (Se ocultarán/mostrarán en celular) -->
+        <div class="nav-links" id="menu-enlaces">
+            <!-- Nota: Recuerda poner class="active" en la pestaña que corresponda a cada archivo HTML -->
             <a href="index.html">Inicio</a>
             <a href="normas.html">Normas</a>
             <a href="epgp.html">EPGP</a>

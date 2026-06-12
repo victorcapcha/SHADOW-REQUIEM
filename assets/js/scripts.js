@@ -6,6 +6,16 @@ const ENLACES_GUILD = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  // LÓGICA PARA ABRIR Y CERRAR EL MENÚ HAMBURGUESA
+    const btnHamburguesa = document.getElementById("btn-hamburguesa");
+    const menuEnlaces = document.getElementById("menu-enlaces");
+
+    if (btnHamburguesa && menuEnlaces) {
+        btnHamburguesa.addEventListener("click", () => {
+            // El método toggle agrega la clase "mostrar" si no existe, o la quita si ya está
+            menuEnlaces.classList.toggle("mostrar");
+        });
+    }
     // Inyectar enlaces sociales automáticos en las páginas
     document.querySelectorAll('a[href="TU_LINK_DE_DISCORD"]').forEach(el => el.href = ENLACES_GUILD.discord);
     document.querySelectorAll('a[href="TU_LINK_DE_WHATSAPP"]').forEach(el => el.href = ENLACES_GUILD.whatsapp);
