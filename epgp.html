@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHADOW REQUIEM - Sistema EPGP Puro</title>
+    <link rel="stylesheet" href="assets/css/estilos.css">
+    <script defer src="assets/js/scripts.js"></script>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav>
+        <a href="index.html" class="nav-logo-link">
+            <h1>SHADOW REQUIEM</h1>
+        </a>
+        <div>
+            <a href="index.html">Inicio</a>
+            <a href="normas.html">Normas</a>
+            <a href="epgp.html" class="active">EPGP</a>
+            <a href="guias.html">Guías</a>
+        </div>
+    </nav>
+
+    <!-- SECCIÓN DE EPGP -->
+    <section>
+        <h3>Sistema de Puntos EPGP (Puro)</h3>
+        <p style="color: #9ca3af; margin-bottom: 2rem;">Lista oficial de prioridades de la hermandad. Sincronizada directamente desde las Notas de Oficial del juego.</p>
+        
+        <!-- PANEL DE ADMINISTRADOR (SOLO PARA TI) -->
+        <div class="box-normas" style="margin-bottom: 2rem; border-color: rgba(147, 51, 234, 0.3);">
+            <h4 style="color: #c084fc; margin: 0 0 0.5rem 0;">Panel de Actualización</h4>
+            <p style="color: #9ca3af; font-size: 0.9rem; margin-bottom: 1rem;">Copia el texto JSON desde el Addon en el juego, pégalo aquí abajo y haz clic en Actualizar Tabla.</p>
+            <textarea id="json-input" placeholder='Pega aquí el JSON del Addon...' style="width: 100%; height: 80px; background-color: #030712; border: 1px solid #374151; color: #10b981; font-family: monospace; border-radius: 0.375rem; padding: 0.5rem; box-sizing: border-box; margin-bottom: 1rem;"></textarea>
+            <button id="btn-importar" class="btn-guia" style="background-color: #6d28d9; color: white; border: none; cursor: pointer; padding: 0.6rem 1.5rem;">Actualizar Tabla</button>
+        </div>
+
+        <!-- CONTENEDOR DE LA TABLA DINÁMICA -->
+        <div class="tabla-contenedor">
+            <table class="tabla-epgp">
+                <thead>
+                    <tr>
+                        <th>Personaje</th>
+                        <th>Clase</th>
+                        <th>EP (Effort)</th>
+                        <th>GP (Gear)</th>
+                        <th>PR (Prioridad)</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-cuerpo-epgp">
+                    <!-- JavaScript insertará las filas reales aquí automáticamente -->
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #9ca3af; padding: 2rem;">No hay datos cargados todavía. Pega el JSON del Addon arriba.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- REDES SOCIALES FLOTANTES -->
+    <div class="social-flotante">
+        <a href="TU_LINK_DE_DISCORD" target="_blank" class="social-btn btn-floating-discord" title="Discord"><svg viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.95,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.75-5.13c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.72,0c.85.69,1.74,1.37,2.65,2a68.42,68.42,0,0,1-10.75,5.13,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.84,50.23,124.05,27.42,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/></svg></a>
+    </div>
+
+</body>
+</html>
