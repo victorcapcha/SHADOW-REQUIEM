@@ -25,19 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnHamburguesa = document.getElementById("btn-hamburguesa");
     const menuEnlaces = document.getElementById("menu-enlaces");
 
-    // 1. ESCUDO DE SEGURIDAD ABSOLUTO EN TIEMPO REAL
+       // 1. ESCUDO DE SEGURIDAD ABSOLUTO EN TIEMPO REAL (OPTIMIZADO PARA NETLIFY)
     onAuthStateChanged(auth, (user) => {
-        // Detecta el nombre de la página de forma inteligente sin importar el servidor
-        const rutaCompleta = window.location.pathname;
-        const esPaginaLogin = rutaCompleta.includes("login.html");
+        const rutaCompleta = window.location.pathname.toLowerCase();
+        
+        // Detecta de forma inteligente si el usuario ya está parado en el login
+        const esPaginaLogin = rutaCompleta.includes("login");
 
         if (user) {
-            // Si el usuario ya inició sesión e intenta ir al login, lo mandamos al Inicio
+            // Si ya inició sesión e intenta ir al login, lo mandamos al Inicio
             if (esPaginaLogin) {
                 window.location.href = "index.html";
             }
 
-            // INYECTAR BOTÓN DE SALIR (LOGOUT)
+            // INYECTAR BOTÓN DE SALIR (LOGOUT) EN EL MENÚ
             if (menuEnlaces && !document.getElementById("btn-logout")) {
                 const logoutLink = document.createElement("a");
                 logoutLink.href = "#";
@@ -52,24 +53,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 menuEnlaces.appendChild(logoutLink);
             }
 
-            // COMPROBACIÓN DE ROL DE ADMINISTRADOR
+            // GESTIÓN DEL PANEL DE ADMINISTRACIÓN
             const panelAdmin = document.getElementById("panel-administrador");
             if (panelAdmin) {
-                // Compara en minúsculas para evitar errores de tipeo
-                if (user.email.toLowerCase() === CORREO_ADMIN.toLowerCase()) {
-                    panelAdmin.style.style.setProperty("display", "block", "important"); // Fuerza la vista al admin
+                if (user.email && user.email.toLowerCase() === CORREO_ADMIN.toLowerCase()) {
+                    panelAdmin.style.display = "block"; // Eres tú: se muestra el cuadro
                 } else {
-                    panelAdmin.remove(); // Si es un raider común, destruye el panel por completo para que no exista en su pantalla
+                    panelAdmin.remove(); // Es un raider común: se destruye por completo el cuadro
                 }
             }
 
         } else {
-            // SI NO ESTÁ LOGUEADO: Lo expulsamos inmediatamente a menos que ya esté en el login
+            // SI NO ESTÁ LOGUEADO: Lo expulsamos inmediatamente al login.html
             if (!esPaginaLogin) {
                 window.location.href = "login.html";
             }
         }
     });
+
 
     // 2. PROCESAR EL INICIO DE SESIÓN
     if (loginForm) {
