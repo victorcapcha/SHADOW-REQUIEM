@@ -1,6 +1,6 @@
-// IMPORTACIÓN COMPATIBLE DE ALTA VELOCIDAD (EVITA BLOQUEOS DE CORS EN NETLIFY)
-import { initializeApp } from "https://cloudflare.com";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://cloudflare.com";
+// IMPORTACIÓN LOCAL SEGURA (ELIMINA ERRORES DE CORS AL 100%)
+import { initializeApp } from "./firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "./firebase-auth.js";
 
 // 🔑 CONFIGURACIÓN CON TUS LLAVES REALES DE FIREBASE
 // REEMPLAZA este objeto por el bloque exacto que guardaste en tu bloc de notas
