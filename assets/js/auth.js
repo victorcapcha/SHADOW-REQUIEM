@@ -1,4 +1,3 @@
-// IMPORTACIÓN CON RUTAS COMPLETAS OFICIALES (EVITA ERRORES DE CORS)
 import { initializeApp } from "https://gstatic.com";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://gstatic.com";
 
