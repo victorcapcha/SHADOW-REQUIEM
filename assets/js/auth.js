@@ -1,6 +1,6 @@
-// IMPORTACIÓN LOCAL SEGURA (ELIMINA ERRORES DE CORS AL 100%)
-import { initializeApp } from "./firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "./firebase-auth.js";
+// IMPORTACIÓN DIRECTA DESDE LOS SERVIDORES OFICIALES DE GOOGLE FIREBASE
+import { initializeApp } from "https://gstatic.com";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://gstatic.com";
 
 // 🔑 CONFIGURACIÓN CON TUS LLAVES REALES DE FIREBASE
 // REEMPLAZA este objeto por el bloque exacto que guardaste en tu bloc de notas
