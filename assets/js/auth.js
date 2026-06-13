@@ -1,5 +1,6 @@
-import { initializeApp } from "https://gstatic.com";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://gstatic.com";
+// IMPORTACIÓN COMPATIBLE DE ALTA VELOCIDAD (EVITA BLOQUEOS DE CORS EN NETLIFY)
+import { initializeApp } from "https://cloudflare.com";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://cloudflare.com";
 
 // 🔑 CONFIGURACIÓN CON TUS LLAVES REALES DE FIREBASE
 // REEMPLAZA este objeto por el bloque exacto que guardaste en tu bloc de notas
